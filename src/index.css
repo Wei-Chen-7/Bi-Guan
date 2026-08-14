@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 当前境界主题色，由 RealmDisplay 按境界写入，供辉光与圆环取用。 */
+    --realm-color: #6b8e7a;
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-ink-bg text-cloud font-sans antialiased;
+    /* 宣纸噪点：内联 SVG feTurbulence，不引入任何图片文件。 */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIj48ZmlsdGVyIGlkPSJwIiB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44NSIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjxmZUNvbG9yTWF0cml4IHR5cGU9InNhdHVyYXRlIiB2YWx1ZXM9IjAiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgZmlsdGVyPSJ1cmwoI3ApIi8+PC9zdmc+');
+    background-repeat: repeat;
+    /* 噪点极淡，只提供质感，不能真的看出颗粒。 */
+    background-blend-mode: overlay;
+    background-size: 180px 180px;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+
+  /* 数字一律等宽，倒计时和修为数值不跳动。 */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-serif;
+  }
+
+  button {
+    @apply transition-colors duration-200;
+  }
+
+  /* 移动端不要横向滚动条 */
+  body {
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* 卡片：不用阴影，用 1px 低对比度边框 */
+  .card {
+    @apply rounded-md border border-cloud/10 bg-ink-deep/60 p-4;
+  }
+
+  .btn {
+    @apply rounded-md border border-cloud/15 px-4 py-2 text-sm
+           text-cloud/85 transition-all duration-200
+           hover:border-cloud/30 hover:text-cloud
+           active:scale-[0.98] disabled:opacity-40;
+  }
+
+  .btn-primary {
+    @apply rounded-md border px-6 py-3 font-serif text-base tracking-widest
+           transition-all duration-300 active:scale-[0.98];
+    border-color: color-mix(in srgb, var(--realm-color) 55%, transparent);
+    background-color: color-mix(in srgb, var(--realm-color) 12%, transparent);
+    color: #e8e4d9;
+  }
+
+  .btn-primary:hover {
+    background-color: color-mix(in srgb, var(--realm-color) 22%, transparent);
+    border-color: color-mix(in srgb, var(--realm-color) 80%, transparent);
+  }
+
+  .chip {
+    @apply shrink-0 whitespace-nowrap rounded-md border px-3 py-1.5 text-sm
+           transition-all duration-200;
+  }
+
+  .chip-off {
+    @apply border-cloud/12 text-mist hover:border-cloud/25 hover:text-cloud/80;
+  }
+
+  .label {
+    @apply text-xs tracking-wide text-mist;
+  }
+
+  /* 细分割线 */
+  .hairline {
+    @apply border-t border-cloud/10;
+  }
+}
+
+/* 尊重系统的减少动效设置 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
