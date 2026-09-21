@@ -112,7 +112,7 @@ export function Settings() {
                 type="button"
                 onClick={() => removePreset(minutes)}
                 className="chip chip-off tnum group"
-                aria-label={`${minutes} ${UI.minutesUnit}`}
+                aria-label={`${UI.remove} ${minutes} ${UI.minutesUnit}`}
               >
                 {minutes}
                 <X
@@ -150,7 +150,7 @@ export function Settings() {
                     setNewPreset('');
                   }}
                   className="btn px-2.5 py-1.5"
-                  aria-label={UI.presetAdd}
+                  aria-label={UI.presetAddConfirm}
                 >
                   <Check size={13} />
                 </button>
@@ -275,7 +275,7 @@ export function Settings() {
                   if (e.key === 'Enter') e.currentTarget.blur();
                 }}
                 maxLength={10}
-                aria-label={gongfa}
+                aria-label={`${UI.gongfa}：${gongfa}`}
                 className="min-w-0 flex-1 rounded-md border border-cloud/10
                            bg-transparent px-3 py-2 text-sm text-cloud/85
                            outline-none transition-colors duration-200
@@ -286,7 +286,7 @@ export function Settings() {
                 onClick={() => removeGongfa(index)}
                 disabled={settings.gongfaList.length <= 1}
                 className="btn px-2.5 py-2 hover:border-cinnabar/50 hover:text-cinnabar"
-                aria-label={`${UI.cancel} ${gongfa}`}
+                aria-label={`${UI.remove} ${gongfa}`}
               >
                 <Trash2 size={13} />
               </button>
@@ -321,7 +321,7 @@ export function Settings() {
                 setNewGongfa('');
               }}
               className="btn px-2.5 py-2"
-              aria-label={UI.gongfaAdd}
+              aria-label={UI.gongfaAddConfirm}
             >
               <Check size={13} />
             </button>

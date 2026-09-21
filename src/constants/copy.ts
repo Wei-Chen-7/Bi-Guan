@@ -141,6 +141,9 @@ export const UI = {
   ambientSound: '环境音',
   gongfaHint: '最多十二个，删除不影响既往记录',
   gongfaNamePlaceholder: '功法名',
+  gongfaAddConfirm: '确认新增功法',
+  presetAddConfirm: '确认添加时长',
+  remove: '删除',
 
   dataExport: '导出修行录',
   dataExportHint: '下载完整 JSON 备份',
